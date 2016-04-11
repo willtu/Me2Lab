@@ -6,7 +6,7 @@
 * [MultipleSubstitutionTransformation](#3-multiplesubstitutiontransformation)	多重替换，结构中包含价态
 
 ##1. SubstitutionTransformation
-　　This transformation substitutes species for one another.
+　　This transformation substitutes species for one another.  
 　　**Official links:** [docs](http://pymatgen.org/pymatgen.transformations.html#pymatgen.transformations.standard_transformations.SubstitutionTransformation) [source](http://pymatgen.org/_modules/pymatgen/transformations/standard_transformations.html#SubstitutionTransformation)
 >参数:  
 **species\_map** – A dict or list of tuples containing the species mapping in string-string pairs. E.g., {“Li”:”Na”} or [(“Fe2+”,”Mn2+”)]. Multiple substitutions can be done. Overloaded to accept sp\_and\_occu dictionary E.g. {“Si: {“Ge”:0.75, “C”:0.25}}, which substitutes a single species with multiple species to generate a disordered structure.    
@@ -90,9 +90,9 @@ from pymatgen import Structure,Composition
 from pymatgen.structure_prediction.substitutor import \
 Substitutor
 bs_struc = Structure.from_file("POSCAR")
-bs_comp  = Composition("YCuTe2")
 #alw_spec = Substitutor(threshold=0.001, symprec=0.1).\
 #get_allowed_species()
+#nacl_comp  = Composition("NaCl")
 #rb_struc = Substitutor(threshold=0.001, symprec=0.1).\
 #pred_from_comp(bs_comp)
 #rb_struc = Substitutor(threshold=0.001, symprec=0.1).\
@@ -136,4 +136,9 @@ bs_struc =	Structure.from_file("POSCAR")
 rb_struc =	MultipleSubstitutionTransformation("Cu",1,\
 				{2:["Mg"]},None,True).\
 				apply_transformation(bs_struc,True)
+```
+error message 
+
+```sh
+ValueError: Ewald summation can only be performed on structures that are either oxidation state decorated or have site charges.
 ```
