@@ -1,2 +1,2 @@
-default vaule
-tau=1E-14, ZT=True, kappal=0.5
+default vaule  
+tau=1E-14, kappal=0.5
