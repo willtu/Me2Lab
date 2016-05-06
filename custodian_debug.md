@@ -1,6 +1,16 @@
-#custodian_debug
+#custodian debug
 
 ##module
-custodian.vasp.handlers
+custodian.vasp.handlers  
+* path:~/<env_name>/codes/custodian/custodian/vasp/handler.py
 
-##method
+##class
+VaspErrorHandler
+
+* line: 59 Ture → False
+
+PositiveEnergyErrorHandler
+
+* line:964 Ture → False
+
+To be continued！
