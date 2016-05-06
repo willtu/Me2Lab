@@ -2,7 +2,7 @@
 
 ##module
 custodian.vasp.handlers  
-* path:~/\<env_name>/codes/custodian/custodian/vasp/handler.py
+* path:~/\<env_name>/codes/custodian/custodian/vasp/handlers.py
 
 ##class
 VaspErrorHandler
