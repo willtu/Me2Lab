@@ -94,14 +94,14 @@ which mpenv
 ```
 　　如果出现`~/.conda/envs/admin_env/bin/mpenv`说明安装成功。
 
-## 第二部分 在Pi上安装自己的虚拟环境
+## 第二部分 安装个人虚拟环境
 ### 1. 申请自己的环境名称
 
 　　向hongzhu老师申请你个人的环境名称。
 
 ### 2. 上传并解压压缩包
 
-　　当你收到名为“环境名_files.tar.gz”的压缩包，即可在本地通过`scp`命令将其传至你在Pi的`$HOME`目录，(默认下载到了`~/Downloads`)。
+　　当你收到名为“环境名_files.tar.gz”或者的压缩包，即可在本地通过`scp`命令将其传至你在Pi的`$HOME`目录，(默认下载到了`~/Downloads`)。
 
 ```sh
 scp ~/Downloads/压缩包名 Pi用户名@Pi主机Host:~
@@ -137,8 +137,7 @@ mpenv --conda --https 环境名
 >注意3:  
 >安装期间，因各种原因终止，则删除`~/环境名`文件夹，并清空`~/.bashrc.ext`中你环境名所对应的内容，并重新尝试。清空的方式，与建立空文件方式相同。
 
-### 5. 修改源码以匹配pi的设定
-#### 5.1 修改`~/.bashrc.ext`
+### 5. 修改`~/.bashrc.ext`并测试
 ```
 vim ~/.bashrc.ext
 ```
@@ -155,30 +154,8 @@ source ~/.bashrc
 ```
 　　测试：使用`use_环境名`进入虚拟环境，`use_none`退出虚拟环境。
 
-#### 5.2 修改`my_qadapter.yaml`
 
-```sh
-vim ~/环境名/config/config_SjtuPi/my_qadapter.yaml
-```
-　　删掉`my_qadapter.yaml`中rocket_launch一行中的`--offline`，即修改为：
-
-```sh
-rocket_launch: rlaunch -c /lustre/home/账户名/环境名/config/config_SjtuPi singleshot
-```
-
-### 5.3 修改`wf_settings.py`
-
-```sh
-vim ~/环境名/codes/MPWorks/mpworks/workflows/wf_settings.py
-```
-　　将对应行修改为
-
-```python
-QA_VASP = {'nnodes': 2}
-QA_VASP_SMALL = {'nnodes': 2, 'walltime': '24:00:00'}  # small walltime jobs
-```
-
-## 第三部分
+## 第三部分 添加软件、修改源码
 
 ### 1. 复制VASP\_PSP文件夹、VASP二进制文件:
 
@@ -221,6 +198,33 @@ export MAPI_KEY="你的MPAPI"
 ```sh
 source  ~/.bashrc
 ```
+
+### 4. 修改源码以匹配pi的设定
+
+#### 4.1 修改`my_qadapter.yaml`
+
+```sh
+vim ~/环境名/config/config_SjtuPi/my_qadapter.yaml
+```
+　　删掉`my_qadapter.yaml`中rocket_launch一行中的`--offline`，即修改为：
+
+```sh
+rocket_launch: rlaunch -c /lustre/home/账户名/环境名/config/config_SjtuPi singleshot
+```
+
+#### 4.2 修改`wf_settings.py`
+
+```sh
+vim ~/环境名/codes/MPWorks/mpworks/workflows/wf_settings.py
+```
+　　将对应行修改为
+
+```python
+QA_VASP = {'nnodes': 2}
+QA_VASP_SMALL = {'nnodes': 2, 'walltime': '24:00:00'}  # small walltime jobs
+```
+#### 4.3 参考[Custodian Debug](custodian_debug.md)修改cudtodian源码
+　　修改对应位置，修改后，参考[修改Package](#修改Package)使修改生效。
 
 #更新&修改
 ##更新管理员环境(尽量别用)
