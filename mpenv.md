@@ -142,7 +142,7 @@ mpenv --conda --https 环境名
 ```
 vim ~/.bashrc.ext
 ```
-　　修改对应行：
+　　修改对应行(只改动第一个分号前)：
 
 ```sh
 alias use_环境名='source activate ~/环境名/virtenv_环境名;后面不改动'
@@ -204,20 +204,19 @@ scp -r umjzhh@202.120.58.229:~/bin/ ~/bin
 ```sh
 vim ~/.bashrc.ext
 ```
-　　把`# for boltztrap`上面一行修改为：
+　　把`# for boltztrap`上一行修改为：
 
 ```sh
 export PATH=$HOME/software/VASP/bin:$PATH # for VASP　　
 ```
-　　在个人环境最后(`# MPenv 环境名 end--->`之前)，修改VASP_PSP路径，加上个人的materials porject的api。
+　　在个人环境最后(`# MPenv 环境名 end--->`之前)，修改VASP_PSP路径，加上个人的Materials Porject的[API](https://materialsproject.org/dashboard)。
 
 ```sh
-export PATH=$HOME/software/VASP/bin:$PATH # for VASP
-export VASP_PSP_DIR=$HOME/VASP_PSP
+export VASP_PSP_DIR=$HOME/software/VASP
 export MAPI_KEY="你的MPAPI"
 ```
 
-　　每次修改完`.bashrc.ext`,都因重新载入一下，让设置生效：
+　　每次修改完`~/.bashrc.ext`,都因重新载入一下，让设置生效：
 
 ```sh
 source  ~/.bashrc
