@@ -17,7 +17,7 @@
 ```sh
 vim ~/.bashrc
 ```
-　　建议将其就改为：
+　　建议改为：
 
 ```sh
 # Source global definitions
@@ -76,16 +76,6 @@ cd MPenv;
 git checkout sjtu;
 git pull
 ```
-#### ４.3 复制VASP二进制文件
-
-```sh
-mkdir -p ~/software/VASP/bin
-scp -r umjzhh@202.120.58.229:/lustre/home/umjzhh/keliu/VASP_unpacked/vasp.5.4.1.05Feb16/bin/ ~/software/VASP/bin
-```
->以后编译版本可以放到`~/software/VASP/src/`，`~/software/VASP/bin`中的版本不要用软链接，这样在计算的时候同时编译新的VASP
-
-### 4.4 复制BoltzTraP二进制文件
-
 ### ５. 安装Mpenv
 
 　　安装Mpenv:
@@ -156,7 +146,6 @@ vim ~/.bashrc.ext
 
 ```sh
 alias use_环境名='source activate ~/环境名/virtenv_环境名;后面不改动'
-export PATH=$HOME/software/VASP/bin:$PATH # for VASP
 alias use_none='source deactivate;后面不改动'
 ```
 　　退出保存后
@@ -191,20 +180,44 @@ QA_VASP_SMALL = {'nnodes': 2, 'walltime': '24:00:00'}  # small walltime jobs
 
 ## 第三部分
 
-　　复制VASP\_PSP文件夹:
+### 1. 复制VASP\_PSP文件夹、VASP二进制文件:
 
 ```sh
-scp -r umjzhh@202.120.58.229:/lustre/home/umjzhh/VASP_PSP ~/
+scp -r umjzhh@202.120.58.229:~/VASP_PSP ~/software/VASP
+mkdir -p ~/software/VASP/bin
+scp -r umjzhh@202.120.58.229:~/keliu/VASP_unpacked/vasp.5.4.1.05Feb16/bin/ ~/software/VASP/bin
+```
+>以后编译版本可以放到`~/software/VASP/src/`，`~/software/VASP/bin`中的版本不要用软链接，这样在计算的时候同时编译新的VASP
+
+### 2. 复制BoltzTraP二进制文件
+
+```sh
+mkdir -p ~/bin
+scp -r umjzhh@202.120.58.229:~/bin/ ~/bin
+
 ```
 
-　　在`~/.bashrc.ext`你个人环境最后(`# MPenv 环境名 end--->`之前)，修改VASP_PSP路径，加上你个人的materials porject的api。
+### 3. 完善相关环境变量
+
+　　修改`~/.bashrc.ext`
 
 ```sh
+vim ~/.bashrc.ext
+```
+　　把`# for boltztrap`上面一行修改为：
+
+```sh
+export PATH=$HOME/software/VASP/bin:$PATH # for VASP　　
+```
+　　在个人环境最后(`# MPenv 环境名 end--->`之前)，修改VASP_PSP路径，加上个人的materials porject的api。
+
+```sh
+export PATH=$HOME/software/VASP/bin:$PATH # for VASP
 export VASP_PSP_DIR=$HOME/VASP_PSP
 export MAPI_KEY="你的MPAPI"
 ```
 
-　　每次修改完`.bashrc.ext`,都因该重新载入一下，让设置生效：
+　　每次修改完`.bashrc.ext`,都因重新载入一下，让设置生效：
 
 ```sh
 source  ~/.bashrc
