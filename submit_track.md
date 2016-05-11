@@ -4,18 +4,17 @@
 　　在π上一般利用`qlaunch`实现自动提交。然而终端关闭后，`qlaunch`的提交也会随之终止，故加上`nohup`来进行持续提交任务，最终实现方案如下：
 
 ```sh
-alias qlaunch='if [ $( pgrep -f qlaunch | wc -l ) -eq 0 ]; then  mkdir -p ./log;  nohup qlaunch -r rapidfire --nlaunches infinite -m 6 --sleep 30 -b 10000 > ./log/qlaunch.out & fi'
+alias qlaunch='if [ $( pgrep -f qlaunch -U $(whoami) | wc -l ) -eq 0 ]; then  mkdir -p ./log;  nohup qlaunch -r rapidfire --nlaunches infinite -m 6 --sleep 30 -b 10000 > ./log/qlaunch.out & fi'
+alias elaunch='pkill -f qlaunch -U $(whoami)'
 ```
 >当前，π允许每账户同时运行最大任务数为6，亦即 -m (which means max) 参数的设置。
 
-　　在`~/.bashrc.ext`中设置此`alias`，以后执行`qlaunch`便会判断是否存在`qlaunch`进程，当进程不存在则持续提交任务，并将提交日志保存在当前位置的log目录下。  
-　　另外，查看用户所有任务，和终止提交可以采用：
+　　在`~/.bashrc.ext`中设置此`alias`，以后执行`qlaunch`便会判断当前用户是否存在`qlaunch`进程，当进程不存在则持续提交任务，并将提交日志保存在当前位置的log目录下。用`elaunch`来终止当前用户的`qlaunch`进程。  
+　　另外，查看用户所有任务可以采用：
 
 ```sh
 # 查看
-ps -u 用户名
-# 终止提交(qlaunch)
-pkill -f qlaunch
+ps -u $(whoami)
 ```
 ## 任务追踪
 　　SLURM系统的工作过程，任务先提交到队列(squeue)中，然后系统根据你的计算要求，给你分配节点进行计算。
