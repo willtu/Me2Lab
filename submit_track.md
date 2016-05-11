@@ -13,7 +13,6 @@ alias elaunch='pkill -f qlaunch -U $(whoami)'
 　　另外，查看用户所有任务可以采用：
 
 ```sh
-# 查看
 ps -u $(whoami)
 ```
 ## 任务追踪
@@ -23,7 +22,7 @@ ps -u $(whoami)
 # 当前队列状况：
 squeue
 # 当前账户历史任务：
-sacct -u 账户名
+sacct -u $(whoami)
 # 已知 SLURM job_id (在FireWorks中对应qid) 查看某任务详情：
 sacct -j 任务序号
 # 图形化界面(Mac需安装xquartz)，并ssh -Y 登录
@@ -44,10 +43,10 @@ lpad get_wflows -s 状态
 lpad get_fws -i fw_id
 # 通过qid(SLURM job_id)获取任务详情
 lpad get_fws --qid qid
+# launcher的路径可以在对应workflows里看到
+lpad get_wflows -i fw_id -d more
 ```
-　　虽然，任务详情和工作流详情都可以通过加`-d more`的参数来获得，但是并不建议这样做，因为出来的结果，其实就是MongoDB对应任务全部保存下来写成了一个json文件，不如直接上MongoDB上搜索。  
-　　MongoDB搜索方式，稍后补全。  
-　　当定位到问题任务的launcher目录，就可以通过目录中的`.error`及其他文件来分析出错的原因并采取相应的更改。
+>最后需要解释一下的，workflow其实没有所谓的wflows\_id，`name`右侧的数字是第一个firework的fw\_id，workflows中任何fireworkd的fw_id，都可以用`-i`参数定位到workflows，所以FireWorks中看path最快的方式是`lpad get_wflows -i fw_id -d more`。
 
 ##建议
 　　FireWorks的文件结构是，一个`block`文件夹下有很多`laucnher`文件夹，每个`laucnher`文件夹都对应着一个firework。
