@@ -1,6 +1,6 @@
 # Pymatgen的认识
 ## pacakages
-###1. core
+### 1. core
 
 >provides the core definitions of various objects used by the rest of the library.
 
@@ -14,7 +14,7 @@
 |Structure|*core.structure*|structure|
 |Composition|*core.structure*|compositions|
 
-###2. eletronic_structure
+### 2. eletronic_structure
 
 >defines objects representing various electronic structure analyses.
 

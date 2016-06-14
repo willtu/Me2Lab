@@ -15,7 +15,7 @@ $$
 $$
 ## Constants  
 ```
-tau			= 1E-14
+tau         = 1E-14
 kappal		= 1.0 (for MPWorks)
 droping[0]	= 1e16
 droping[1]	= 1e17
