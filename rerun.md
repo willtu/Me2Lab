@@ -1,0 +1,5 @@
+
+get band structure
+
+get_bandstructure_by_material_id
+get_band_structure

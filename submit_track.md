@@ -1,15 +1,15 @@
 # SLURM任务的提交与追踪
 　　本部分内容的基础为FireWorks中的`qlaunch`,`rlaunch`,及SLURM相关命令，建议阅读F[ireWorks](https://pythonhosted.org/FireWorks/)(G[ithub)](https://github.com/materialsproject/fireworks), MPWorks(G[ithub)](https://github.com/materialsproject/MPWorks)相关内容，以及SLURM相关文档P[i doc](http://pi.sjtu.edu.cn/doc/slurm/),O[ffice doc](http://slurm.schedmd.com/documentation.html)
 ## 任务提交
-~~　　在π上一般利用`qlaunch`实现自动提交。然而终端关闭后，`qlaunch`的提交也会随之终止，故加上`nohup`来进行持续提交任务，最终实现方案如下：~~
+　　在π上一般利用`qlaunch`实现自动提交。然而终端关闭后，`qlaunch`的提交也会随之终止，故利用`screen`来进行持续提交任务，最终实现方案如下：~~
 ```sh
-# alias qlaunch='if [ $( pgrep -f qlaunch -U $(whoami) | wc -l ) -eq 0 ]; then  mkdir -p ./log; nohup qlaunch -r rapidfire --nlaunches infinite -m 6 --sleep 30 -b 10000 > ./log/qlaunch.out & fi'
-# alias elaunch='pkill -f qlaunch -U $(whoami)'
+alias slaunch='if [ $( pgrep -f qlaunch -U $(whoami) | wc -l ) -eq 0 ]; then screen qlaunch -r rapidfire --nlaunches infinite -m 3 --sleep 30 -b 10000 & fi'
+alias elaunch='pkill -f qlaunch -U $(whoami)'
 ```
 
->当前，π允许每账户同时运行最大任务数为6，亦即 -m (which means max) 参数的设置。
+>当前，π允许每账户使用最多8个节点，即最多运行8个1节点作业或者4个2节点作业。
 
-~~　　在`~/.bashrc.ext`中设置此`alias`，以后执行`qlaunch`便会判断当前用户是否存在`qlaunch`进程，当进程不存在则持续提交任务，并将提交日志保存在当前位置的log目录下。用`elaunch`来终止当前用户的`qlaunch`进程。~~  
+　　在`~/.bashrc.ext`中设置此`alias`，以后执行`qlaunch`便会判断当前用户是否存在`qlaunch`进程，当进程不存在则持续提交任务。用`elaunch`来终止当前用户的`qlaunch`进程。~~  
 　　另外，查看用户所有任务可以采用：
 
 ```sh
