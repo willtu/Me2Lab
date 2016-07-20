@@ -39,21 +39,21 @@
 |EMIN, EMAX|energy-range for DOSCAR file|
 |ISMEAR|part. occupancies: -5 Blöchl -4-tet -1-fermi 
 |0-gaus >0 MP|
-|SIGMA|broadening in eV -4-tet -1-fermi 0-gaus
-|ALGO|algorithm: Normal (Davidson) | Fast | Very_Fast |(RMM-DIIS)
-|IALGO|algorithm: use only 8 (CG) or 48 (RMM-DIIS)
-LREAL|non-local projectors in real space
-|ROPT|number of grid points for non-local proj in real space
-|GGA|xc-type: e.g. PE AM or 91
-|VOSKOWN|use Vosko, Wilk, Nusair interpolation
-|DIPOL|center of cell for dipol
-|AMIX, BMIX|tags for mixing
-|WEIMIN, EBREAK, DEPER|special control tags
-|TIME|special control tag
-|LWAVE,LCHARG, LVTOT, LVHAR|create WAVECAR/CHGCAR/LOCPOT
-|LELF|create ELFCAR
-|LORBIT|create PROOUT
-|NPAR|parallelization over bands
-|LSCALAPACK|switch off scaLAPACK
-|LSCALU|switch of LU decomposition
-|LASYNC|overlap communcation with calculations
+|SIGMA|broadening in eV -4-tet -1-fermi 0-gaus|
+|ALGO|algorithm: Normal (Davidson) | Fast | Very_Fast |(RMM-DIIS)|
+|IALGO|algorithm: use only 8 (CG) or 48 (RMM-DIIS)|
+LREAL|non-local projectors in real space|
+|ROPT|number of grid points for non-local proj in real space|
+|GGA|xc-type: e.g. PE AM or 91|
+|VOSKOWN|use Vosko, Wilk, Nusair interpolation|
+|DIPOL|center of cell for dipol|
+|AMIX, BMIX|tags for mixing|
+|WEIMIN, EBREAK, DEPER|special control tags|
+|TIME|special control tag|
+|LWAVE,LCHARG, LVTOT, LVHAR|create WAVECAR/CHGCAR/LOCPOT|
+|LELF|create ELFCAR|
+|LORBIT|create PROOUT|
+|NPAR|parallelization over bands|
+|LSCALAPACK|switch off scaLAPACK|
+|LSCALU|switch of LU decomposition|
+|LASYNC|overlap communcation with calculations|
