@@ -3,7 +3,7 @@
 ## 任务提交
 　　在π上一般利用`qlaunch`实现自动提交。然而终端关闭后，`qlaunch`的提交也会随之终止，故利用`screen`来进行持续提交任务，最终实现方案如下：~~
 ```sh
-alias slaunch='if [ $( pgrep -f qlaunch -U $(whoami) | wc -l ) -eq 0 ]; then screen qlaunch -r rapidfire --nlaunches infinite -m 3 --sleep 30 -b 10000 & fi'
+alias slaunch='cd ~/launcher; if [ $( pgrep -f qlaunch -U $(whoami) | wc -l ) -eq 0 ]; then screen qlaunch -r rapidfire --nlaunches infinite -m 4 --sleep 30 -b 10000 & fi'
 alias elaunch='pkill -f qlaunch -U $(whoami)'
 ```
 
