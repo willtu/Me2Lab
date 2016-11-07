@@ -158,18 +158,17 @@ source ~/.bashrc
 ### 1. 复制VASP\_PSP文件夹、VASP二进制文件:
 
 ```sh
-scp -r umjzhh@202.120.58.229:~/VASP_PSP ~/software/VASP
-mkdir -p ~/software/VASP/bin
-scp -r umjzhh@202.120.58.229:~/keliu/VASP_unpacked/vasp.5.4.1.05Feb16/bin/ ~/software/VASP/bin
+mkdir -p ~/opt/VASP
+scp -r umjzhh@202.120.58.229:~/VASP_PSP ~/opt/VASP
+mkdir ~/bin
+scp -r umjzhh@202.120.58.229:~/keliu/VASP_unpacked/vasp.5.4.1.05Feb16/bin/ ~/bin
 ```
->以后编译版本可以放到`~/software/VASP/src/`，`~/software/VASP/bin`中的版本不要用软链接，这样在计算的时候同时编译新的VASP
+>以后编译版本可以放到`~/opt/VASP/src/`，`~/bin`中的版本不要用软链接，这样在计算的时候同时编译新的VASP
 
 ### 2. 复制BoltzTraP二进制文件
 
 ```sh
-mkdir -p ~/bin
 scp -r umjzhh@202.120.58.229:~/bin/ ~/bin
-
 ```
 
 ### 3. 完善相关环境变量
@@ -179,15 +178,11 @@ scp -r umjzhh@202.120.58.229:~/bin/ ~/bin
 ```sh
 vim ~/.bashrc.ext
 ```
-　　把`# for boltztrap`上一行修改为：
 
-```sh
-export PATH=$HOME/software/VASP/bin:$PATH # for VASP　　
-```
 　　在个人环境最后(`# MPenv 环境名 end--->`之前)，修改VASP_PSP路径，加上个人的Materials Porject的[API](https://materialsproject.org/dashboard)。
 
 ```sh
-export VASP_PSP_DIR=$HOME/software/VASP
+export VASP_PSP_DIR=$HOME/opt/VASP
 export MAPI_KEY="你的MPAPI"
 ```
 
