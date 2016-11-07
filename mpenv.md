@@ -153,7 +153,7 @@ source ~/.bashrc
 　　测试：使用`use_环境名`进入虚拟环境，`use_none`退出虚拟环境。
 
 
-## 第三部分 添加软件、修改源码
+## 第三部分 修改环境变量及源码
 
 ### 1. 复制VASP\_PSP文件夹、VASP二进制文件:
 
@@ -205,22 +205,11 @@ vim ~/环境名/config/config_SjtuPi/my_qadapter.yaml
 rocket_launch: rlaunch -c /lustre/home/账户名/环境名/config/config_SjtuPi singleshot
 ```
 
-#### 4.2 修改`wf_settings.py`
-
-```sh
-vim ~/环境名/codes/MPWorks/mpworks/workflows/wf_settings.py
-```
-　　将对应行修改为
-
-```python
-QA_VASP = {'nnodes': 2}
-QA_VASP_SMALL = {'nnodes': 2, 'walltime': '24:00:00'}  # small walltime jobs
-```
-#### 4.3 参考[Custodian Debug](custodian_debug.md)修改cudtodian源码
+#### 4.2 参考[Custodian Debug](custodian_debug.md)修改cudtodian源码
 　　修改对应位置，修改后，参考[修改Package](#修改Package)使修改生效。
 
-#更新&修改
-##更新管理员环境(尽量别用)
+# 更新\&修改
+## 更新管理员环境(尽量别用)
 ```sh
 source activate admin_env
 conda upgrade --all
@@ -231,7 +220,7 @@ conda upgrade --all
 use_none
 # 退出管理员环境
 ```
-##更新个人环境
+## 更新个人环境
 
 ```
 update_codes
@@ -246,7 +235,7 @@ update_codes
 python steup.py develop
 ```
 
-#卸载or删除
+# 卸载or删除
 
 　　如个人环境需要重装，只需删除环境文件夹，并清空`~/.bashrc.ext`个人设置即可。如管理员环境应该重装，应再删除`admin_env``.conda`。
 
