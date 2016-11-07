@@ -29,15 +29,13 @@ if [ -e $HOME/.bashrc.ext ]; then
 	. $HOME/.bashrc.ext
 fi
 
-# .bashrc
-source /lustre/utility/lsf/conf/profile.lsf
-export MODULEPATH=/lustre/utility/modulefiles:$MODULEPATH
+# Modules
+unset MODULEPATH
+module use /lustre/usr/modulefiles/pi
 module load mkl/default
 module load icc/default
 module load gcc/default
 module load impi/default
-
-# User specific aliases and functions
 ```
 
 　　其余可以自己酌情添加，icc和gcc的顺序不要动。保存后重新载入`~/.bashrc`
