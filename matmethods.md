@@ -98,6 +98,7 @@ vim ~/.bashrc.matmethods
 ```
 
 ```sh
+# ~/.bashrc.matmethods
 source activate /lustre/home/umjzhh-1/matmethods/env
 export FW_CONFIG_FILE=/lustre/home/umjzhh-1/matmethods/config/FW_config.yaml
 
@@ -113,5 +114,11 @@ alias update_codes='
     cd $wd
 '
 
-alias use_none='source deactivate; export FW_CONFIG_FILE="";
+alias use_none='source deactivate; export FW_CONFIG_FILE="";'
+```
+
+然后，在`~/.bashrc`中添加:
+
+```sh
+alias use_matmethods='source ~/.bashrc.matmethods'
 ```
